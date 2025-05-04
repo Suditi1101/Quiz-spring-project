@@ -1,10 +1,14 @@
 package com.Confign.Client.model;
 
+import java.util.List;
+
 public class Quiz {
-	private String quest;
-	private Answer ans;
 	
-	public Quiz(String quest, Answer ans) {
+	private String quest;
+	private List<?> ans;
+//	private Answer ans;
+	
+	public Quiz(String quest, List<?> ans) {
 		super();
 		this.quest = quest;
 		this.ans = ans;
@@ -18,11 +22,11 @@ public class Quiz {
 		this.quest = quest;
 	}
 
-	public Answer getAns() {
+	public List<?> getAns() {
 		return ans;
 	}
 
-	public void setAns(Answer ans) {
+	public void setAns(List<?> ans) {
 		this.ans = ans;
 	}
 	

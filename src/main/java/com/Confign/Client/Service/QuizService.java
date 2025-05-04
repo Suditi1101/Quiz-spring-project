@@ -16,10 +16,15 @@ public class QuizService {
 	
 	public void setQuiz() {
 		List<Quiz> quiz = new ArrayList<>();
-		quiz.add(new Quiz("Which file is used configure Spring Boot Properties?", new Answer("application.properties")));
-		quiz.add(new Quiz("How many profiles can be active at a time?", new Answer(1)));
-		quiz.add(new Quiz("What is the latest version of Spring boot?", new Answer(3.4d)));
-		quiz.add(new Quiz("Does @RestController include @ResponseBody by default?", new Answer(true)));
+//		quiz.add(new Quiz("Which file is used configure Spring Boot Properties?", new Answer("application.properties")));
+//		quiz.add(new Quiz("How many profiles can be active at a time?", new Answer(1)));
+//		quiz.add(new Quiz("What is the latest version of Spring boot?", new Answer(3.4d)));
+//		quiz.add(new Quiz("Does @RestController include @ResponseBody by default?", new Answer(true)));
+		//Second approach
+		quiz.add(new Quiz("Which file is used configure Spring Boot Properties?", List.of("application.properties")));
+		quiz.add(new Quiz("How many profiles can be active at a time?", List.of(1)));
+		quiz.add(new Quiz("What is the latest version of Spring boot?", List.of(3.4d)));
+		quiz.add(new Quiz("Does @RestController include @ResponseBody by default?", List.of(true)));
 		
 		takeQuiz(quiz);
 		
@@ -33,22 +38,28 @@ public class QuizService {
 			System.out.println(q.getQuest());
 			Scanner sc = new Scanner(System.in);
 			String userInput = sc .nextLine();
-			Answer correctAns = q.getAns();
-			boolean isCorrect = false;
+			List<?> correctAns = q.getAns();
+//			boolean isCorrect = false;
 			
-			if(correctAns.getType().equals("string")) {
-				isCorrect = userInput.equalsIgnoreCase(correctAns.getStrAns());
-			}else if(correctAns.getType().equals("integer")) {
-				int inputVal = Integer.parseInt(userInput.trim());
-                isCorrect = inputVal == correctAns.getIntAns();
-			}else if(correctAns.getType().equals("double")) {
-				double inputVal = Double.parseDouble(userInput.trim());
-                isCorrect = inputVal == correctAns.getDoubleAns();
-			}else if(correctAns.getType().equals("boolean")) {
-				boolean inputVal = Boolean.parseBoolean(userInput.trim());
-                isCorrect = inputVal == correctAns.isBoolAns();
+			if(correctAns.getFirst().toString().equals(userInput)) {
+				System.out.println("Right");
+			}else {
+				System.out.println("Wrong");
 			}
-			System.out.println(isCorrect? "Right": "Wrong");
+			
+//			if(correctAns.getType().equals("string")) {
+//				isCorrect = userInput.equalsIgnoreCase(correctAns.getStrAns());
+//			}else if(correctAns.getType().equals("integer")) {
+//				int inputVal = Integer.parseInt(userInput.trim());
+//                isCorrect = inputVal == correctAns.getIntAns();
+//			}else if(correctAns.getType().equals("double")) {
+//				double inputVal = Double.parseDouble(userInput.trim());
+//                isCorrect = inputVal == correctAns.getDoubleAns();
+//			}else if(correctAns.getType().equals("boolean")) {
+//				boolean inputVal = Boolean.parseBoolean(userInput.trim());
+//                isCorrect = inputVal == correctAns.isBoolAns();
+//			}
+//			System.out.println(isCorrect? "Right": "Wrong");
 		});
 	}
 	
